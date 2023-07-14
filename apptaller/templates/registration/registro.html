@@ -1,0 +1,49 @@
+{% extends 'base_login.html' %}
+{% load static %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="row">
+        <div class="col-8" style="margin: auto; margin-top: 10px">
+            <div class="card">
+                <div class="card-header text-center">
+                    Usuario para Mecanico 
+                </div>
+                <div class="card-body">
+                    {{mensaje}}
+                    <form class="row" id="loginForm" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Apellido:</label>
+                            <input type="text" class="form-control" name="apellido" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombre">Correo:</label>
+                            <input type="text" class="form-control" name="correo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombre">Password:</label>
+                            <input type="password" class="form-control" name="password1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombre">Repita su Password:</label>
+                            <input type="password" class="form-control" name="password2" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <button type="submit" style="width: 100%" class="btn btn-primary">Registrarme</button>
+                        </div>
+                    </form>                
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %}

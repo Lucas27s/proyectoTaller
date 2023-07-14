@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/carousel-bg-2.jpg);">
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Postulaciones</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Postulaciones</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="text-primary text-uppercase">// Postulantes //</h6>
+            <h1 class="mb-5" style="text-transform: uppercase;">{{p.nombre}} {{p.apellido}} </h1>
+        </div>
+        <div class="container text-center">
+            <div class="wow fadeInUp" data-wow-delay="0.1s">
+                <div class="container-fluid">
+                    <figure class="figure" style="border: 1px solid black; padding: 10px;">
+                        <div class="card">
+                            {% if p.foto %}
+                            <img src="{{ p.foto.url }}" class="figure-img img-fluid rounded" alt=""
+                                style="height: 600px; width: 900px;">
+                            {% else %}
+                            <img src=" " class="figure-img img-fluid rounded" alt="">
+                            {% endif %}
+                        </div>
+
+                        <div class="card-body" style="text-align: left;">
+                            <h4 class="fw-bold mb-0">Cargo al que postula: {{ p.cargo }}</h4>
+                            <h4 class="fw-bold mb-0" class="fw-bold mb-0">Rut: {{ p.rut }}</h4>
+                            <h4 class="fw-bold mb-0">Edad: {{ p.edad }}</h4>
+                            <h4 class="fw-bold mb-0">Fecha de Nacimiento: {{ p.fecha_nacimiento }}</h4>
+                            <h4 class="fw-bold mb-0">Dirección: {{ p.direccion }}</h4>
+                            <h4 class="fw-bold mb-0">Antecedentes Laborales: {{ p.antecedentes_laborales }}</h4>
+                            <h4 class="fw-bold mb-0">Antecedentes Academicos: {{ p.antecedentes_academicos }}</h4>
+                            <h4 class="fw-bold mb-0">Curriculum: {{ p.curriculum }}</h4>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+            <button onclick="goBack()" class="btn btn-primary wow fadeInUp" data-wow-delay="0.1s">Volver</button>
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
+{% endblock %}

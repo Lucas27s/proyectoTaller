@@ -1,0 +1,101 @@
+{% extends 'base.html '%}
+{% load static %}
+
+{% block contenido %}
+
+{% load crispy_forms_tags %}
+
+<!--<script>
+    function eliminarAtencion(diagnostico) {
+
+        Swal.fire({
+            title: 'Advertencia',
+            text: "¿Estas seguro de eliminar la atención?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'No, Cancelar',
+            confirmButtonText: 'Si, Eliminar'
+        }).then(function(result){
+            if (result.isConfirmed) 
+            {
+                window.location.href="/eliminar_atencion/"+diagnostico+"/";
+            }
+        })  
+
+    }
+</script>-->
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/carousel-bg-1.jpg);">
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Postulantes</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Postulantes</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<div class="container mt-5">
+    <table class="table table-hover">
+        <div class="text-center">
+            <h3>Listar Postulantes</h3>
+        </div>
+
+        <thead>
+            <tr>
+                <th scope="col">Cargo</th>
+                <th scope="col">Nombre Completo</th>
+                <th scope="col">Rut</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Fecha de Nacimiento</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Antecedentes Laborales</th>
+                <th scope="col">Antecedentes Academicos</th>
+                <th scope="col">Curriculum</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for p in postulacion %}
+            <tr>
+                <th scope="row">{{p.cargo}}</th>
+                <td>{{p.nombre}} {{p.apellido}}</td>
+                <td>{{p.rut}}</td>
+                <td>{{p.edad}}</td>
+                <td>{{p.fecha_nacimiento}}</td>
+                <td>{{p.direccion}}</td>
+                <td>
+                    {% if p.foto %}
+                    <img width="100px" height="100px" src="{{p.foto.url}}" class="img-responsive wp-post-image" alt=""
+                        decoding="async">
+                    {% else %}
+                    <img width="100px" height="100px" src="" class="img-responsive wp-post-image" alt=""
+                        decoding="async">
+                    {% endif %}
+                </td>
+                <td>{{p.antecedentes_laborales}}</td>
+                <td>{{p.antecedentes_academicos}}</td>
+                <td>{{p.curriculum}}</td>
+                <td>
+                    <a href="{% url 'detalle_postulante' p.pk %}"><button type="submit"class="btn btn-success">Ver Postulación</button></a>
+                    <!--<a href="#" onclick="eliminarAtencion('{{a.diagnostico}}')" class="btn btn-danger">Eliminar</a>-->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {{ mensaje }}
+</div>
+{% endblock %}
